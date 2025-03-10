@@ -3,6 +3,8 @@ streamlit
 
 # Document Processing
 langchain-community
+langchain-unstructured
+langchain
 chardet
 PyMuPDF
 python-docx
