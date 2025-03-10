@@ -1,0 +1,22 @@
+# Core Framework
+streamlit
+
+# Document Processing
+langchain-community
+chardet
+PyMuPDF
+python-docx
+python-pptx
+unstructured[all-docs]
+
+# Image Processing
+opencv-python
+Pillow
+
+# OCR
+rapidocr-onnxruntime
+rapidocr_paddle
+
+# General Tools
+tqdm
+numpy

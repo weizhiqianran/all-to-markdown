@@ -5,6 +5,61 @@ from typing import Dict
 
 import chardet
 import langchain_community.document_loaders
+from langchain_community.document_loaders import JSONLoader
+from langchain_community.document_loaders import TextLoader
+
+
+LOADER_DICT = {
+    "UnstructuredHTMLLoader": [".html", ".htm"],
+    "MHTMLLoader": [".mhtml"],
+    "TextLoader": [".md"],
+    "UnstructuredMarkdownLoader": [".md"],
+    "JSONLoader": [".json"],
+    "JSONLinesLoader": [".jsonl"],
+    "CSVLoader": [".csv"],
+    # "FilteredCSVLoader": [".csv"], 如果使用自定义分割csv
+    "RapidOCRPDFLoader": [".pdf"],
+    "RapidOCRDocLoader": [".docx"],
+    "RapidOCRPPTLoader": [
+        ".ppt",
+        ".pptx",
+    ],
+    "RapidOCRLoader": [".png", ".jpg", ".jpeg", ".bmp"],
+    "UnstructuredFileLoader": [
+        ".eml",
+        ".msg",
+        ".rst",
+        ".rtf",
+        ".txt",
+        ".xml",
+        ".epub",
+        ".odt",
+        ".tsv",
+    ],
+    "UnstructuredEmailLoader": [".eml", ".msg"],
+    "UnstructuredEPubLoader": [".epub"],
+    "UnstructuredExcelLoader": [".xlsx", ".xls", ".xlsd"],
+    "NotebookLoader": [".ipynb"],
+    "UnstructuredODTLoader": [".odt"],
+    "PythonLoader": [".py"],
+    "UnstructuredRSTLoader": [".rst"],
+    "UnstructuredRTFLoader": [".rtf"],
+    "SRTLoader": [".srt"],
+    "TomlLoader": [".toml"],
+    "UnstructuredTSVLoader": [".tsv"],
+    "UnstructuredWordDocumentLoader": [".docx"],
+    "UnstructuredXMLLoader": [".xml"],
+    "UnstructuredPowerPointLoader": [".ppt", ".pptx"],
+    "EverNoteLoader": [".enex"],
+}
+
+SUPPORTED_EXTS = [ext for sublist in LOADER_DICT.values() for ext in sublist]
+
+
+def get_LoaderClass(file_extension):
+    for LoaderClass, extensions in LOADER_DICT.items():
+        if file_extension in extensions:
+            return LoaderClass
 
 
 def get_loader(loader_name: str, file_path: str, loader_kwargs: Dict = None):

@@ -5,8 +5,7 @@ from typing import Dict
 
 import chardet
 import langchain_community.document_loaders
-from langchain_community.document_loaders import JSONLoader
-from langchain_community.document_loaders import TextLoader
+
 
 LOADER_DICT = {
     "UnstructuredHTMLLoader": [".html", ".htm"],
@@ -51,15 +50,8 @@ LOADER_DICT = {
     "UnstructuredPowerPointLoader": [".ppt", ".pptx"],
     "EverNoteLoader": [".enex"],
 }
+
 SUPPORTED_EXTS = [ext for sublist in LOADER_DICT.values() for ext in sublist]
-
-class JSONLinesLoader(JSONLoader):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self._json_lines = True
-
-
-langchain_community.document_loaders.JSONLinesLoader = JSONLinesLoader
 
 
 def get_LoaderClass(file_extension):
@@ -81,8 +73,9 @@ def get_loader(loader_name: str, file_path: str, loader_kwargs: Dict = None):
             "RapidOCRDocLoader",
             "RapidOCRPPTLoader",
         ]:
+            # 使用相对路径导入
             document_loaders_module = importlib.import_module(
-                "chatchat.server.file_rag.document_loaders"
+                "../../server/file_rag/document_loaders"
             )
         else:
             document_loaders_module = importlib.import_module(
