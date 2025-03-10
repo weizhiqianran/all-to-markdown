@@ -75,7 +75,7 @@ def get_loader(loader_name: str, file_path: str, loader_kwargs: Dict = None):
         ]:
             # 使用相对路径导入
             document_loaders_module = importlib.import_module(
-                "../../server/file_rag/document_loaders"
+                "../document_loaders"
             )
         else:
             document_loaders_module = importlib.import_module(

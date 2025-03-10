@@ -47,7 +47,7 @@ def get_loader(loader_name: str, file_path: str, loader_kwargs: Dict = None):
             "RapidOCRDocLoader", "RapidOCRPPTLoader"
         ]:
             document_loaders_module = importlib.import_module(
-                "../../server/file_rag/document_loaders"
+                "../document_loaders"
             )
         elif loader_name == "UnstructuredLoader":
             # 直接使用 langchain_unstructured
