@@ -41,13 +41,19 @@ def get_loader(loader_name: str, file_path: str, loader_kwargs: Dict = None):
     根据loader_name和文件路径返回文档加载器。
     """
     loader_kwargs = loader_kwargs or {}
+
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    # 拼接出 document_loaders 模块的完整路径
+    module_path = os.path.join(current_dir, "document_loaders")
+
+
     try:
         if loader_name in [
             "RapidOCRPDFLoader", "RapidOCRLoader", "FilteredCSVLoader",
             "RapidOCRDocLoader", "RapidOCRPPTLoader"
         ]:
             document_loaders_module = importlib.import_module(
-                "../document_loaders"
+                module_path
             )
         elif loader_name == "UnstructuredLoader":
             # 直接使用 langchain_unstructured
